@@ -1,8 +1,14 @@
-from brownie import FizzBuzz, accounts
+from brownie import FizzBuzz, accounts, network, config
 
+
+def get_account():
+    if network.show_active() != "development":
+        accounts.add(config["wallets"]["from_key"])
+
+    return accounts[0]
 
 def test_no_output():
-    account = accounts[0]
+    account = get_account()
     fizzBuzz = FizzBuzz.deploy({"from": account})
 
     for index in range(100):
@@ -12,7 +18,7 @@ def test_no_output():
 
 
 def test_fizz_output():
-    account = accounts[0]
+    account = get_account()
     fizzBuzz = FizzBuzz.deploy({"from": account})
 
     for index in range(100):
@@ -22,7 +28,7 @@ def test_fizz_output():
 
 
 def test_buzz_output():
-    account = accounts[0]
+    account = get_account()
     fizzBuzz = FizzBuzz.deploy({"from": account})
 
     for index in range(100):
@@ -32,7 +38,7 @@ def test_buzz_output():
 
 
 def test_fizzbuzz_output():
-    account = accounts[0]
+    account = get_account()
     fizzBuzz = FizzBuzz.deploy({"from": account})
 
     for index in range(100):
