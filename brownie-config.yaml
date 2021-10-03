@@ -1,0 +1,8 @@
+dependencies:
+  # - <organization/repo>@<version>
+  - OpenZeppelin/openzeppelin-contracts@3.4.0
+
+dotenv: .env
+
+wallets:
+  from_key: ${PRIVATE_KEY}
